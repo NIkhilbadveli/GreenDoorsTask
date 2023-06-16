@@ -1,11 +1,9 @@
 // App.js
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import PageOne from './pageOne';
-import PageTwo from './pageTwo';
-import PageThree from "./pageThree";
-import Done from './done';
+import FormPage from "./components/formPage";
+import Done from './components/done';
 
 const AppContainer = styled.div`
   max-width: 600px;
@@ -24,14 +22,58 @@ function App() {
     setFormState(inputValue);
   };
 
+  const makeFields = [
+    {
+      name: 'make',
+      label: 'MAKE',
+      type: 'select',
+      options: ['AUDI', 'BMW', 'VAUXHAL', 'MERCEDES', 'PEUGEOT', 'RENAULT'],
+      buttonText: 'NEXT'
+    },
+  ];
+
+  const colourFields = [
+    {
+      name: 'colour',
+      label: 'COLOUR',
+      type: 'select',
+      options: ['BLUE', 'RED', 'BLACK', 'ORANGE'],
+      buttonText: 'NEXT'
+    },
+  ];
+
+  const codeFields = [
+    {
+      name: 'code',
+      label: 'CODE',
+      type: 'text',
+      buttonText: 'SUBMIT'
+    },
+  ];
+
   return (
     <Router>
       <AppContainer>
         <Routes>
-          <Route path="/" element={<PageOne handleFormChange={handleFormChange} />} />
-          <Route path="/page-two" element={<PageTwo formState={formState} handleFormChange={handleFormChange} />} />
-          <Route path="/page-three" element={<PageThree formState={formState} handleFormChange={handleFormChange} />} />
-          <Route path="/done" element={<Done formState={formState}/>}/>
+          <Route path="/" element={<FormPage
+            fields={makeFields}
+            formData={formState}
+            handleFormChange={handleFormChange}
+            nextPage="/page-two"
+          />} />
+          <Route path="/page-two" element={<FormPage
+            fields={colourFields}
+            formData={formState}
+            handleFormChange={handleFormChange}
+            nextPage="/page-three"
+          />} />
+          <Route path="/page-three" element={<FormPage
+            fields={codeFields}
+            formData={formState}
+            handleFormChange={handleFormChange}
+            nextPage="/done"
+          />} />
+          <Route path="/done" element={<Done formState={formState} />} />
         </Routes>
       </AppContainer>
     </Router>

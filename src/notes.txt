@@ -1,0 +1,4 @@
+- Started with two pages :- One with all the form inputs and the other with generated text
+- Then modified it such that each input has it's own page
+- Then added StyledComponents
+- Then added a list to the right of the dropdown to show the available options persistently
