@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
+import styled from "styled-components";
+import PageOne from './pageOne';
+import PageTwo from './pageTwo';
+import PageThree from "./pageThree";
+import Done from './done';
+
+const AppContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+`;
 
 function App() {
+  const [formState, setFormState] = useState({
+    make: "",
+    colour: "",
+    code: "",
+  });
+
+  const handleFormChange = (inputValue) => {
+    setFormState(inputValue);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppContainer>
+        <Routes>
+          <Route path="/" element={<PageOne handleFormChange={handleFormChange} />} />
+          <Route path="/page-two" element={<PageTwo formState={formState} handleFormChange={handleFormChange} />} />
+          <Route path="/page-three" element={<PageThree formState={formState} handleFormChange={handleFormChange} />} />
+          <Route path="/done" element={<Done formState={formState}/>}/>
+        </Routes>
+      </AppContainer>
+    </Router>
   );
 }
 
