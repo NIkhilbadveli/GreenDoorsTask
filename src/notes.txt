@@ -2,3 +2,5 @@
 - Then modified it such that each input has it's own page
 - Then added StyledComponents
 - Then added a list to the right of the dropdown to show the available options persistently
+- Made FormPage and Form components and hardcoded the individual page components in App.js along with the data
+- Moved data into separate file.

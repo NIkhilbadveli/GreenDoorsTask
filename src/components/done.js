@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Done({ formState }) {
+function Done({ formState, resetForm }) {
     return (
         <div>
             <h2>Generated Text</h2>
@@ -11,7 +11,7 @@ function Done({ formState }) {
             <br />
             <p>REF: {formState.code}</p>
             <br />
-            <Link to="/">Go Back</Link>
+            <Link to="/" onClick={resetForm}>Go Back</Link>
         </div>
     );
 }
